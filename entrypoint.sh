@@ -1,3 +1,9 @@
 #!/bin/sh
 
-theme deploy --password=$SHOPIFY_PASSWORD --store=$SHOPIFY_STORE_URL --themeid=$SHOPIFY_THEME_ID --dir=$THEME_PATH $INPUT_ARGS
+ARGS="--password=$SHOPIFY_PASSWORD --store=$SHOPIFY_STORE_URL --dir=$THEME_PATH"
+
+if [ -n "$SHOPIFY_THEME_ID" ]; then
+    ARGS="$ARGS --themeid=$SHOPIFY_THEME_ID"
+fi
+
+theme download $ARGS $INPUT_ARGS
