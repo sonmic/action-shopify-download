@@ -1,6 +1,6 @@
-# Deploy Shopify theme for GitHub Actions
+# Download Shopify theme for GitHub Actions
 
-This GitHub action is part of a list of my Actions : https://github.com/pgrimaud/actions.
+This GitHub action is based on https://github.com/pgrimaud/action-shopify.
 
 ## Usage
 
@@ -11,15 +11,13 @@ To use the action simply add the following lines to your workflow .yml file.
   steps:
       - uses: actions/checkout@v1
       - name: Shopify
-        uses: pgrimaud/action-shopify@master
+        uses: sonmic/action-shopify-download@master
         env:
           SHOPIFY_PASSWORD: ${{ secrets.SHOPIFY_PASSWORD }}
           SHOPIFY_STORE_URL: ${{ secrets.SHOPIFY_STORE_URL }}
           SHOPIFY_THEME_ID: ${{ secrets.SHOPIFY_THEME_ID }}
           THEME_PATH: ${{ secrets.THEME_PATH }}
 ```
-
-You can see a repository with this action here : https://github.com/pgrimaud/shopify-debut
 
 ### Required Secrets
 
@@ -29,12 +27,12 @@ Then you'll need to provide some secrets to use the action.
 
 * **SHOPIFY_PASSWORD**: Your password from your private app previously created.
 * **SHOPIFY_STORE_URL**: Your store url. (e.g. `demo.myshopify.com`).
-* **SHOPIFY_THEME_ID**: Your theme id on your Shopify Store.
+* **SHOPIFY_THEME_ID** (optional): Your theme id on your Shopify Store. If omitted, it defaults to the live theme.
 * **THEME_PATH**: Path of your theme on your GitHub repository. If your theme is at the root of your repository, just use `./`.
 
 ### Optional Arguments
 
-The optional argument you can add to improve theme deployment. Optional args are available on [Theme Kit help](https://shopify.github.io/themekit/configuration/#flags).
+The optional argument you can add to improve theme download. Optional args are available on [Theme Kit help](https://shopify.github.io/themekit/configuration/#flags).
 
 #### Examples
 
@@ -43,7 +41,7 @@ The optional argument you can add to improve theme deployment. Optional args are
   steps:
       - uses: actions/checkout@v1
       - name: Shopify
-        uses: pgrimaud/action-shopify@master
+        uses: sonmic/action-shopify-download@master
         env:
           SHOPIFY_PASSWORD: ${{ secrets.SHOPIFY_PASSWORD }}
           SHOPIFY_STORE_URL: ${{ secrets.SHOPIFY_STORE_URL }}
@@ -60,7 +58,7 @@ Your can also combine multiple arguments :
   steps:
       - uses: actions/checkout@v1
       - name: Shopify
-        uses: pgrimaud/action-shopify@master
+        uses: sonmic/action-shopify-download@master
         env:
           SHOPIFY_PASSWORD: ${{ secrets.SHOPIFY_PASSWORD }}
           SHOPIFY_STORE_URL: ${{ secrets.SHOPIFY_STORE_URL }}
